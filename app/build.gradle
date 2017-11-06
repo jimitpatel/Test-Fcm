@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        release {
+            keyAlias 'jimit'
+            keyPassword 'jimit@123'
+            storeFile file('C:/Users/jimit/Data/Android/keystore/regular_jimit.jks')
+            storePassword 'jimit@123'
+        }
+
+        debug {
+            keyAlias 'jimit'
+            keyPassword 'jimit@123'
+            storeFile file('C:/Users/jimit/Data/Android/keystore/regular_jimit.jks')
+            storePassword 'jimit@123'
+        }
+    }
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "jimit.testfcm"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    packagingOptions {
+        exclude '.readme'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/README.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/MANIFEST.MF'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso", {
+        exclude group: "com.android.support", module: "support-annotations"
+    })
+    testImplementation "junit:junit:$rootProject.ext.junit"
+
+    implementation "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
+
+    implementation "com.google.firebase:firebase-core:$rootProject.ext.gms"
+    implementation "com.google.firebase:firebase-messaging:$rootProject.ext.gms"
+}
+// Keep below line at bottom: https://stackoverflow.com/a/38834120/842607
+apply plugin: 'com.google.gms.google-services'
