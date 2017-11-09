@@ -40,9 +40,8 @@ ext {
     espresso = '2.2.2'
     junit = '4.12'
 
-    customFonts = '1.0.0'
-    butterknife = '8.8.1'
-    sdp = '1.0.4'
-
     gms = '11.4.2'
+
+    retrofit = '2.3.0'
+    okhttp3 = '3.8.0'
 }

@@ -16,4 +16,6 @@ public class Config {
     public static final String KEY_TOKEN = "token";
     public static final String KEY_REG_ID = "regId";
     public static final String KEY_MESSAGE = "message";
+
+    public static final String KEY_LOGIN = "key";
 }

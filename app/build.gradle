@@ -19,6 +19,7 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
+    String apiUrl
 
     defaultConfig {
         applicationId "jimit.testfcm"
@@ -27,11 +28,17 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        apiUrl = '\"http://groups.demowebsite.co.in/\"'
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "API", apiUrl)
+        }
+        debug {
+            buildConfigField("String", "API", apiUrl)
         }
     }
 
@@ -59,6 +66,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso", {
         exclude group: "com.android.support", module: "support-annotations"
     })
@@ -72,6 +80,14 @@ dependencies {
 
     implementation "com.google.firebase:firebase-core:$rootProject.ext.gms"
     implementation "com.google.firebase:firebase-messaging:$rootProject.ext.gms"
+
+    //Retrofit
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.retrofit"
+
+    // http logs
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp3"
 }
 // Keep below line at bottom: https://stackoverflow.com/a/38834120/842607
 apply plugin: 'com.google.gms.google-services'

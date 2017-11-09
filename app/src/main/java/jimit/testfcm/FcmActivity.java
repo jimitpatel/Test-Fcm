@@ -39,7 +39,6 @@ public class FcmActivity extends AppCompatActivity {
                     displayFirebaseRegId();
                 } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
                     String message = intent.getStringExtra(Config.KEY_MESSAGE);
-                    Toaster.init(getApplicationContext());
                     Toaster.shortToast("Push Notification=" + message);
                     txtMessage.setText(message);
                 }

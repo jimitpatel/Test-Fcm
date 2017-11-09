@@ -31,7 +31,7 @@ import java.util.List;
 public class NotificationUtils {
  
     private static String TAG = NotificationUtils.class.getSimpleName();
- 
+
     private Context mContext;
  
     public NotificationUtils(Context mContext) {
@@ -68,7 +68,7 @@ public class NotificationUtils {
  
         if (!TextUtils.isEmpty(imageUrl)) {
  
-            if (imageUrl != null && imageUrl.length() > 4 && Patterns.WEB_URL.matcher(imageUrl).matches()) {
+            if (imageUrl.length() > 4 && Patterns.WEB_URL.matcher(imageUrl).matches()) {
  
                 Bitmap bitmap = getBitmapFromURL(imageUrl);
  
