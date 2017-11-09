@@ -183,6 +183,7 @@ public class LoginActivity extends AppCompatActivity {
                             String loginKey = response.body().getAsJsonObject().get(Config.KEY_LOGIN).getAsString();
                             Prefs.setEncryptString(LoginActivity.this, Config.KEY_LOGIN, loginKey);
                             startActivity(new Intent(LoginActivity.this, FcmActivity.class));
+                            finish();
                         } catch (Exception e) {
                             e.printStackTrace();
                             Toaster.shortToast(getString(R.string.error_internal));
@@ -202,15 +203,16 @@ public class LoginActivity extends AppCompatActivity {
                 Map<String, String> requestBody = new HashMap<>();
                 requestBody.put("username", username);
                 requestBody.put("email", email);
+
                 if (isRegister) {
                     requestBody.put("password1", password);
                     requestBody.put("password2", password);
-                    call = client.login(requestBody);
+                    call = client.register(requestBody);
                 } else {
                     requestBody.put("password", password);
-                    call = client.register(requestBody);
+                    call = client.login(requestBody);
                 }
-                
+
                 call.enqueue(callback);
             } catch (Exception e) {
                 showProgress(false);
